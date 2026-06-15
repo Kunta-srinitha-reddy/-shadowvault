@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Placeholder base URL — teammate will update this
 // to point to the actual Spring Boot backend
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'https://shadowvault-api.railway.app/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
