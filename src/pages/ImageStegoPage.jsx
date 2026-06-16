@@ -31,11 +31,11 @@ const ImageStegoPage = () => {
   const [decError, setDecError] = useState('');
 
   // Redirect to login if no token
-  useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      navigate('/login');
-    }
-  }, [navigate]);
+  //useEffect(() => {
+   // if (!localStorage.getItem('token')) {
+    //  navigate('/login');
+   // }
+  //}, [navigate]);
 
   // Handle encrypt image preview
   const handleEncImageChange = (e) => {
@@ -69,6 +69,16 @@ const ImageStegoPage = () => {
     setEncSuccess(false);
     setStegoBlob(null);
 
+    // ===== TEMPORARY: fake success for UI testing =====
+    setTimeout(() => {
+      const fakeBlob = new Blob(['fake image data'], { type: 'image/png' });
+      setStegoBlob(fakeBlob);
+      setEncSuccess(true);
+      setEncLoading(false);
+    }, 1500);
+    return;
+    // ===== END TEMPORARY =====
+
     try {
       const formData = new FormData();
       formData.append('image', encImage);
@@ -94,7 +104,6 @@ const ImageStegoPage = () => {
       setEncLoading(false);
     }
   };
-
   // Download stego image
   const handleDownload = () => {
     if (!stegoBlob) return;
