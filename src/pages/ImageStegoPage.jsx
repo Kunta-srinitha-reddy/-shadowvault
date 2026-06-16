@@ -31,11 +31,11 @@ const ImageStegoPage = () => {
   const [decError, setDecError] = useState('');
 
   // Redirect to login if no token
-  //useEffect(() => {
-   // if (!localStorage.getItem('token')) {
-    //  navigate('/login');
-   // }
-  //}, [navigate]);
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   // Handle encrypt image preview
   const handleEncImageChange = (e) => {
@@ -69,16 +69,6 @@ const ImageStegoPage = () => {
     setEncSuccess(false);
     setStegoBlob(null);
 
-    // ===== TEMPORARY: fake success for UI testing =====
-    setTimeout(() => {
-      const fakeBlob = new Blob(['fake image data'], { type: 'image/png' });
-      setStegoBlob(fakeBlob);
-      setEncSuccess(true);
-      setEncLoading(false);
-    }, 1500);
-    return;
-    // ===== END TEMPORARY =====
-
     try {
       const formData = new FormData();
       formData.append('image', encImage);
@@ -104,6 +94,7 @@ const ImageStegoPage = () => {
       setEncLoading(false);
     }
   };
+
   // Download stego image
   const handleDownload = () => {
     if (!stegoBlob) return;
@@ -285,7 +276,7 @@ const ImageStegoPage = () => {
                     cursor: 'pointer',
                     backgroundColor: '#0d1117',
                     transition: 'border-color 0.2s',
-                    minHeight: '160px',
+                    minHeight: "240px",
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -295,11 +286,11 @@ const ImageStegoPage = () => {
                   onMouseOut={e => e.currentTarget.style.borderColor = '#30363d'}
                 >
                   {encPreview ? (
-                    <img src={encPreview} alt="preview" style={{ maxWidth: '100%', maxHeight: '140px', borderRadius: '6px', objectFit: 'contain' }} />
+                    <img src={encPreview} alt="preview" style={{ maxWidth: '100%', maxHeight: "200px", borderRadius: '6px', objectFit: 'contain' }} />
                   ) : (
                     <>
-                      <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🖼️</div>
-                      <div style={{ color: '#8b949e', fontSize: '0.82rem' }}>Click to upload image</div>
+                      <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>🖼️</div>
+                      <div style={{ color: '#8b949e', fontSize: '0.9rem' }}>Click to upload image</div>
                       <div style={{ color: '#484f58', fontSize: '0.75rem', marginTop: '4px' }}>PNG, JPG, BMP supported</div>
                     </>
                   )}
@@ -470,7 +461,7 @@ const ImageStegoPage = () => {
                     textAlign: 'center',
                     cursor: 'pointer',
                     backgroundColor: '#0d1117',
-                    minHeight: '160px',
+                    minHeight: "240px",
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -481,10 +472,10 @@ const ImageStegoPage = () => {
                   onMouseOut={e => e.currentTarget.style.borderColor = '#30363d'}
                 >
                   {decPreview ? (
-                    <img src={decPreview} alt="preview" style={{ maxWidth: '100%', maxHeight: '140px', borderRadius: '6px', objectFit: 'contain' }} />
+                    <img src={decPreview} alt="preview" style={{ maxWidth: '100%', maxHeight: "200px", borderRadius: '6px', objectFit: 'contain' }} />
                   ) : (
                     <>
-                      <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🔍</div>
+                      <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>🔍</div>
                       <div style={{ color: '#8b949e', fontSize: '0.82rem' }}>Click to upload stego image</div>
                       <div style={{ color: '#484f58', fontSize: '0.75rem', marginTop: '4px' }}>The image containing hidden data</div>
                     </>

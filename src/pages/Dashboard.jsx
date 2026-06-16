@@ -27,15 +27,10 @@ const Dashboard = () => {
     return 'Good evening';
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
+  const handleLogout = () => { logout(); navigate('/login'); };
 
   useEffect(() => {
-    const close = (e) => {
-      if (!e.target.closest('#avatar-btn')) setDropdownOpen(false);
-    };
+    const close = (e) => { if (!e.target.closest('#avatar-btn')) setDropdownOpen(false); };
     document.addEventListener('click', close);
     return () => document.removeEventListener('click', close);
   }, []);
@@ -43,88 +38,61 @@ const Dashboard = () => {
   return (
     <div style={{
       backgroundColor: '#0a0d14',
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      overflow: 'hidden',
+      minHeight: '100vh',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }}>
-
-      {/* Subtle dot grid background */}
+      {/* dot grid */}
       <div style={{
-        position: 'fixed',
-        inset: 0,
+        position: 'fixed', inset: 0,
         backgroundImage: 'radial-gradient(circle, #ffffff08 1px, transparent 1px)',
         backgroundSize: '28px 28px',
-        pointerEvents: 'none',
-        zIndex: 0,
+        pointerEvents: 'none', zIndex: 0,
       }} />
 
       {/* NAVBAR */}
       <nav style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '0 2rem',
-        height: '62px',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        padding: '0 2rem', height: '62px',
         backgroundColor: 'rgba(22,27,34,0.95)',
         borderBottom: '1px solid #21262d',
-        flexShrink: 0,
-        position: 'relative',
-        zIndex: 10,
+        position: 'sticky', top: 0, zIndex: 10,
       }}>
-        {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{
-            width: 38, height: 38,
-            borderRadius: '10px',
+            width: 38, height: 38, borderRadius: '10px',
             background: 'linear-gradient(135deg, #9d4edd, #2dd4bf)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '1.1rem',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem',
           }}>🔐</div>
-          <span style={{ color: '#e6edf3', fontWeight: 800, fontSize: '1.35rem', letterSpacing: '0.3px' }}>
+          <span style={{ color: '#e6edf3', fontWeight: 800, fontSize: '1.35rem' }}>
             Shadow<span style={{ color: '#9d4edd' }}>Vault</span>
           </span>
         </div>
 
-        {/* Nav right */}
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-          <span
-            onClick={() => navigate('/history')}
+          <span onClick={() => navigate('/history')}
             style={{ color: '#8b949e', fontSize: '0.9rem', cursor: 'pointer' }}
             onMouseOver={e => e.target.style.color = '#e6edf3'}
             onMouseOut={e => e.target.style.color = '#8b949e'}
           >History</span>
 
           <div style={{ position: 'relative' }}>
-            <button
-              id="avatar-btn"
+            <button id="avatar-btn"
               onClick={(e) => { e.stopPropagation(); setDropdownOpen(!dropdownOpen); }}
               style={{
-                width: 38, height: 38,
-                borderRadius: '50%',
+                width: 38, height: 38, borderRadius: '50%',
                 background: 'linear-gradient(135deg, #9d4edd, #2dd4bf)',
-                color: '#fff',
-                fontWeight: 700,
-                fontSize: '0.9rem',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                color: '#fff', fontWeight: 700, fontSize: '0.9rem',
+                border: 'none', cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}
             >{avatarLetter}</button>
 
             {dropdownOpen && (
               <div style={{
                 position: 'absolute', right: 0, top: '48px',
-                backgroundColor: '#161b22',
-                border: '1px solid #30363d',
-                borderRadius: '10px',
-                minWidth: '190px',
-                zIndex: 999,
-                overflow: 'hidden',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+                backgroundColor: '#161b22', border: '1px solid #30363d',
+                borderRadius: '10px', minWidth: '190px', zIndex: 999,
+                overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
               }}>
                 <div style={{ padding: '12px 16px', borderBottom: '1px solid #21262d' }}>
                   <div style={{ color: '#8b949e', fontSize: '0.72rem', marginBottom: '2px' }}>Signed in as</div>
@@ -152,19 +120,11 @@ const Dashboard = () => {
         </div>
       </nav>
 
-      {/* MAIN CONTENT */}
-      <div style={{
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '1.4rem 2rem',
-        overflow: 'hidden',
-        position: 'relative',
-        zIndex: 1,
-      }}>
+      {/* MAIN */}
+      <div style={{ padding: '1.5rem 2rem', position: 'relative', zIndex: 1 }}>
 
         {/* Welcome */}
-        <div style={{ marginBottom: '1.1rem' }}>
+        <div style={{ marginBottom: '1.2rem' }}>
           <div style={{ color: '#2dd4bf', fontSize: '0.82rem', marginBottom: '3px' }}>{getGreeting()},</div>
           <div style={{ color: '#e6edf3', fontSize: '1.5rem', fontWeight: 700 }}>{username} 👋</div>
           <div style={{ color: '#8b949e', fontSize: '0.82rem', marginTop: '3px' }}>What would you like to hide today?</div>
@@ -172,13 +132,9 @@ const Dashboard = () => {
 
         {/* Stats bar */}
         <div style={{
-          display: 'flex',
-          backgroundColor: '#161b22',
-          border: '1px solid #21262d',
-          borderRadius: '12px',
-          marginBottom: '1.1rem',
-          flexShrink: 0,
-          overflow: 'hidden',
+          display: 'flex', backgroundColor: '#161b22',
+          border: '1px solid #21262d', borderRadius: '12px',
+          marginBottom: '1.2rem', overflow: 'hidden',
         }}>
           {[
             { label: 'ENCRYPTION', value: 'AES-256', color: '#9d4edd' },
@@ -187,8 +143,7 @@ const Dashboard = () => {
             { label: 'STATUS', value: '● Active', color: '#10b981' },
           ].map((stat, i) => (
             <div key={i} style={{
-              flex: 1,
-              padding: '0.75rem 1.1rem',
+              flex: 1, padding: '0.75rem 1.1rem',
               borderRight: i < 3 ? '1px solid #21262d' : 'none',
             }}>
               <div style={{ color: '#8b949e', fontSize: '0.63rem', letterSpacing: '1.5px', marginBottom: '4px' }}>{stat.label}</div>
@@ -197,25 +152,21 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Section label */}
-        <div style={{ color: '#8b949e', fontSize: '0.68rem', letterSpacing: '2.5px', marginBottom: '0.8rem' }}>
+        {/* Label */}
+        <div style={{ color: '#8b949e', fontSize: '0.68rem', letterSpacing: '2.5px', marginBottom: '1rem' }}>
           CHOOSE A FEATURE
         </div>
 
-        {/* 3x2 GRID */}
+        {/* 3x2 GRID — uses auto rows so cards are equal and all visible */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gridTemplateRows: 'repeat(2, 1fr)',
-          gap: '0.9rem',
-          flex: 1,
-          minHeight: 0,
+          gap: '1rem',
         }}>
           {features.map((f, i) => {
             const isHovered = hoveredCard === i;
             return (
-              <div
-                key={i}
+              <div key={i}
                 onClick={() => navigate(f.route)}
                 onMouseEnter={() => setHoveredCard(i)}
                 onMouseLeave={() => setHoveredCard(null)}
@@ -223,11 +174,12 @@ const Dashboard = () => {
                   backgroundColor: '#161b22',
                   border: `1.5px solid ${isHovered ? '#9d4edd' : '#5b21b633'}`,
                   borderRadius: '14px',
-                  padding: '1.3rem 1.4rem',
+                  padding: '1.4rem',
                   cursor: 'pointer',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
+                  minHeight: '200px',
                   transform: isHovered ? 'translateY(-3px)' : 'translateY(0)',
                   transition: 'border-color 0.2s, transform 0.2s, box-shadow 0.2s',
                   boxShadow: isHovered ? '0 6px 24px rgba(157,78,221,0.15)' : 'none',
@@ -235,59 +187,32 @@ const Dashboard = () => {
               >
                 {/* Icon */}
                 <div style={{
-                  width: 52, height: 52,
-                  borderRadius: '12px',
-                  backgroundColor: '#0d1117',
-                  border: '1px solid #30363d',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.6rem',
-                  flexShrink: 0,
-                }}>
-                  {f.emoji}
-                </div>
+                  width: 52, height: 52, borderRadius: '12px',
+                  backgroundColor: '#0d1117', border: '1px solid #30363d',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: '1.6rem', flexShrink: 0,
+                }}>{f.emoji}</div>
 
                 {/* Text */}
-                <div style={{ flex: 1, marginTop: '0.9rem' }}>
-                  <div style={{
-                    color: '#e6edf3',
-                    fontWeight: 700,
-                    fontSize: '1.05rem',
-                    marginBottom: '7px',
-                    lineHeight: 1.3,
-                  }}>
+                <div style={{ flex: 1, marginTop: '1rem' }}>
+                  <div style={{ color: '#e6edf3', fontWeight: 700, fontSize: '1.05rem', marginBottom: '7px' }}>
                     {f.title}
                   </div>
-                  <div style={{
-                    color: '#8b949e',
-                    fontSize: '0.85rem',
-                    lineHeight: 1.6,
-                  }}>
+                  <div style={{ color: '#8b949e', fontSize: '0.875rem', lineHeight: 1.6 }}>
                     {f.desc}
                   </div>
                 </div>
 
-                {/* Footer row */}
+                {/* Footer */}
                 <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginTop: '1rem',
-                  paddingTop: '0.75rem',
-                  borderTop: '1px solid #21262d',
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #21262d',
                 }}>
-                  <span style={{
-                    color: isHovered ? '#9d4edd' : '#8b949e',
-                    fontSize: '0.82rem',
-                    fontWeight: 600,
-                    transition: 'color 0.2s',
-                  }}>
+                  <span style={{ color: isHovered ? '#9d4edd' : '#8b949e', fontSize: '0.85rem', fontWeight: 600, transition: 'color 0.2s' }}>
                     Open feature
                   </span>
                   <span style={{
-                    color: isHovered ? '#9d4edd' : '#30363d',
-                    fontSize: '1.1rem',
+                    color: isHovered ? '#9d4edd' : '#30363d', fontSize: '1.1rem',
                     transition: 'all 0.2s',
                     transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
                     display: 'inline-block',
