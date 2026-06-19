@@ -6,6 +6,7 @@ import DeadMansSwitch from "../components/DeadMansSwitch";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useLanguage } from "../context/LanguageContext";
 
+
 const API_BASE = "[localhost](http://localhost:8080/api)";
 
 export default function EvidencePage() {

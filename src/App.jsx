@@ -3,6 +3,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import LandingPage from "./pages/LandingPage";
 import PortalPage from "./pages/PortalPage";
 import EvidencePage from "./pages/EvidencePage";
+import ChatPage from "./pages/ChatPage";
 
 function App() {
   return (
@@ -12,11 +13,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/portal" element={<PortalPage />} />
           <Route path="/evidence" element={<EvidencePage />} />
-          <Route path="/chat" element={
-            <div style={{ backgroundColor: "#0a0a0f", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <p style={{ color: "#444", fontFamily: "system-ui,sans-serif" }}>Counselor chat — coming soon.</p>
-            </div>
-          } />
+          <Route path="/chat" element={<ChatPage />} />
           <Route path="/status" element={
             <div style={{ backgroundColor: "#0a0a0f", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <p style={{ color: "#444", fontFamily: "system-ui,sans-serif" }}>Case status — coming soon.</p>
