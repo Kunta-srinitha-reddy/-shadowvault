@@ -33,7 +33,6 @@ export default function EvidencePage() {
   const [imagePreview, setImagePreview] = useState(null);
   const [isListening, setIsListening] = useState(false);
   const [error, setError] = useState("");
-  const [ngoStatus, setNgoStatus] = useState(""); // sending | sent | error
   const fileRef = useRef();
 
   // Multilingual speech-to-text
@@ -117,17 +116,7 @@ export default function EvidencePage() {
     a.click();
   };
 
-  // Send to NGO (anonymized email via backend)
-  const handleSendToNgo = async () => {
-    setNgoStatus("sending");
-    try {
-      await axios.post(`${API_BASE}/evidence/send-to-ngo`, { token });
-      setNgoStatus("sent");
-    } catch {
-      // Demo mode
-      setTimeout(() => setNgoStatus("sent"), 1000);
-    }
-  };
+ 
 
   const s = {
     page: { minHeight: "100vh", backgroundColor: "#0a0a0f", color: "#e8e8f0", fontFamily: "'Inter','Segoe UI',sans-serif" },
@@ -160,7 +149,7 @@ export default function EvidencePage() {
     cancelBtn: { padding: "12px 28px", border: "1px solid #2a2a3a", borderRadius: "10px", backgroundColor: "transparent", color: "#6b6b80", fontSize: "14px", cursor: "pointer" },
     backBtn: { padding: "12px 28px", border: "1px solid #2a2a3a", borderRadius: "10px", backgroundColor: "transparent", color: "#e8e8f0", fontSize: "14px", cursor: "pointer", marginTop: "16px" },
     actionBtn: { padding: "12px 24px", border: "1px solid #2a2a3a", borderRadius: "10px", backgroundColor: "#111118", color: "#e8e8f0", fontSize: "14px", cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "8px", marginRight: "12px", marginTop: "16px" },
-    actionBtnSuccess: { borderColor: "#10b981", color: "#10b981" },
+   
   };
 
   if (step === "emergency") return (
@@ -220,13 +209,7 @@ export default function EvidencePage() {
               ⬇️ {t("downloadEvidence")}
             </button>
           )}
-          <button
-            style={{ ...s.actionBtn, ...(ngoStatus === "sent" ? s.actionBtnSuccess : {}) }}
-            onClick={handleSendToNgo}
-            disabled={ngoStatus === "sending" || ngoStatus === "sent"}
-          >
-            {ngoStatus === "sending" ? "📧 Sending..." : ngoStatus === "sent" ? `✅ ${t("ngoEmailSent")}` : `📧 ${t("sendToNgo")}`}
-          </button>
+          
         </div>
 
         <DeadMansSwitch token={token} />
