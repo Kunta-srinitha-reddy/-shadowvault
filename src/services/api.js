@@ -25,4 +25,26 @@ export const registerUser = async (name, email, password) => {
   return response.data;
 };
 
+// --- Added for NGO partner registration ---
+// Calls the same POST /api/auth/register endpoint but with the fuller
+// NGO partner payload (org name, contact person, phone, region).
+// Spring/Jackson ignores unrecognized JSON fields by default, so this is
+// safe to use even before the backend model is extended to store them —
+// ask the backend teammate to add orgName/contactPerson/phone/region
+// columns when ready, otherwise only name/email/password will persist.
+// Body: { name, orgName, contactPerson, email, phone, region, password }
+// -> Response: { message: "User registered successfully" }
+export const registerNgo = async ({ orgName, contactPerson, email, phone, region, password }) => {
+  const response = await api.post('/auth/register', {
+    name: orgName, // reuse the existing `name` field the backend expects
+    orgName,
+    contactPerson,
+    email,
+    phone,
+    region,
+    password,
+  });
+  return response.data;
+};
+
 export default api;
