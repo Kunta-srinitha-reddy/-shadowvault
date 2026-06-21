@@ -7,7 +7,7 @@ import EvidencePage from "./pages/EvidencePage";
 import NGOLandingPage from "./pages/NGOLandingPage";
 import NGOLoginPage from "./pages/NGOLoginPage";
 import NGORegisterPage from "./pages/NGORegisterPage";
-import NGODashboardPlaceholder from "./pages/NGODashboardPlaceholder";
+import NGODashboardPage from "./pages/NGODashboardPage";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
             <Route path="/ngo" element={<NGOLandingPage />} />
             <Route path="/ngo-login" element={<NGOLoginPage />} />
             <Route path="/ngo-register" element={<NGORegisterPage />} />
-            <Route path="/ngo-dashboard" element={<NGODashboardPlaceholder />} />
+            <Route path="/ngo-dashboard" element={<NGODashboardPage />} />
           </Routes>
         </HashRouter>
       </LanguageProvider>

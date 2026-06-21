@@ -176,3 +176,142 @@ export const errorText = {
   color: colors.red,
   marginTop: '6px',
 };
+
+// --- Dashboard-specific tokens ---
+
+export const dashboardPage = {
+  minHeight: '100vh',
+  width: '100%',
+  background: colors.bg,
+  fontFamily: fonts.body,
+  color: colors.text,
+  padding: '32px 24px 64px',
+  boxSizing: 'border-box',
+};
+
+export const dashboardHeader = {
+  maxWidth: '1000px',
+  margin: '0 auto 24px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+  flexWrap: 'wrap',
+  gap: '12px',
+};
+
+export const dashboardShell = {
+  maxWidth: '1000px',
+  margin: '0 auto',
+};
+
+export const tabBar = {
+  display: 'flex',
+  gap: '6px',
+  borderBottom: `1px solid ${colors.border}`,
+  marginBottom: '24px',
+  overflowX: 'auto',
+};
+
+export const tabButton = (active) => ({
+  padding: '10px 16px',
+  fontSize: '13px',
+  fontWeight: 600,
+  fontFamily: fonts.body,
+  background: 'transparent',
+  border: 'none',
+  borderBottom: active ? `2px solid ${colors.purple}` : '2px solid transparent',
+  color: active ? colors.text : colors.textDim,
+  cursor: 'pointer',
+  whiteSpace: 'nowrap',
+});
+
+export const sectionCard = {
+  background: colors.bgPanel,
+  border: `1px solid ${colors.border}`,
+  borderRadius: '14px',
+  padding: '20px 22px',
+  marginBottom: '16px',
+};
+
+export const sectionTitle = {
+  fontSize: '15px',
+  fontWeight: 700,
+  margin: '0 0 4px 0',
+};
+
+export const sectionSubtext = {
+  fontSize: '13px',
+  color: colors.textDim,
+  margin: '0 0 16px 0',
+  lineHeight: 1.5,
+};
+
+export const rowItem = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  gap: '12px',
+  padding: '12px 0',
+  borderTop: `1px solid ${colors.border}`,
+  flexWrap: 'wrap',
+};
+
+export const mono = {
+  fontFamily: "'SFMono-Regular', Consolas, monospace",
+  fontSize: '12px',
+  color: colors.cyan,
+};
+
+export const badge = (variant) => {
+  const map = {
+    new: { bg: 'rgba(239,68,68,0.14)', fg: colors.red },
+    pending: { bg: 'rgba(234,179,8,0.14)', fg: '#eab308' },
+    active: { bg: 'rgba(124,58,237,0.14)', fg: colors.purple },
+    resolved: { bg: 'rgba(16,185,129,0.14)', fg: colors.green },
+    default: { bg: 'rgba(153,153,168,0.14)', fg: colors.textDim },
+  };
+  const c = map[variant] || map.default;
+  return {
+    fontSize: '11px',
+    fontWeight: 700,
+    padding: '3px 9px',
+    borderRadius: '999px',
+    background: c.bg,
+    color: c.fg,
+    textTransform: 'uppercase',
+    letterSpacing: '0.04em',
+  };
+};
+
+export const smallButton = {
+  padding: '7px 13px',
+  borderRadius: '8px',
+  border: `1px solid ${colors.border}`,
+  background: 'transparent',
+  color: colors.text,
+  fontSize: '12px',
+  fontWeight: 600,
+  cursor: 'pointer',
+  fontFamily: fonts.body,
+};
+
+export const smallButtonPrimary = {
+  ...smallButton,
+  border: 'none',
+  background: colors.purple,
+  color: '#fff',
+};
+
+export const textarea = {
+  ...input,
+  minHeight: '70px',
+  resize: 'vertical',
+  fontFamily: fonts.body,
+};
+
+export const emptyState = {
+  fontSize: '13px',
+  color: colors.textFaint,
+  padding: '24px 0',
+  textAlign: 'center',
+};
